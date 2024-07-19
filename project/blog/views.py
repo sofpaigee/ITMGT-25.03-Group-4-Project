@@ -85,7 +85,7 @@ def upload_resource(request):
             return redirect('resource_list')
     else:
         form = ResourceUpload()
-    return render(request, 'blog/resource_upload.html', {'form': form})
+    return render(request, 'blog/resource_upload.html', {'form': form}) 
 
 class ResourceListView(ListView): 
     model = Resource

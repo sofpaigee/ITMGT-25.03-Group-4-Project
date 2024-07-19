@@ -141,7 +141,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class ResourceUpload(forms.ModelForm):
     SUBJECT_CHOICES = [
-        ('', ''),  # Add a placeholder choice
+        ('', ''),
         ('MATH 31.1', 'MATH 31.1'),
         ('LAS 21', 'LAS 21'),
         ('MATH 31.2', 'MATH 31.2'),
@@ -177,6 +177,11 @@ class ResourceUpload(forms.ModelForm):
         choices=SUBJECT_CHOICES,
         widget=forms.Select,
         required=True,
+    )
+
+    description = forms.CharField(
+        widget=forms.Textarea,
+        required=False, 
     )
 
     class Meta:
