@@ -5,15 +5,19 @@ MEA Learn is a tutoring service platform specifically designed for the Managemen
 HOW TO RUN THE PROJECT (ADMIN VIEW):
 
 1. git clone https://github.com/sofpaigee/ITMGT-25.03-Group-4-Project
-2. pip install -r requirements.txt
-3. python manage.py migrate
-4. python manage.py createsuperuser
-5. python manage.py runserver
-6. http://127.0.0.1:8000/admin/
+2. python -m venv env
+3. env/Scripts/Activate.ps1
+4. pip install -r requirements.txt
+5. python manage.py migrate
+6. python manage.py createsuperuser
+7. python manage.py runserver
+8. http://127.0.0.1:8000/admin/
 
 HOW TO RUN THE PROJECT (USER VIEW)
 1. git clone https://github.com/sofpaigee/ITMGT-25.03-Group-4-Project
-2. pip install -r requirements.txt
-3. python manage.py migrate
-5. python manage.py runserver
-6. http://127.0.0.1:8000/
+2. python -m venv env
+3. env/Scripts/Activate.ps1
+4. pip install -r requirements.txt
+5. python manage.py migrate
+6. python manage.py runserver
+7. http://127.0.0.1:8000/
