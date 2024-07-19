@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+    <div class = "content-section">
+        <form method ="POST" novalidate>
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                <legend class = "border-bottom mb-4">Log In</legend>
+                {{ form | crispy }}
+                <small class="text-muted">
+                <p style ="text-align: left; line-height: 0.1;">
+                </small>
+            </fieldset>
+            <div class = "form-group">
+                <button class = "btn btn-outline-info" type="submit">
+                    Log In
+                </button>
+            </div>
+        </form>
+        <div class = "border-top pt-3"></div>
+            <small class="text-muted">
+                <p style ="line-height: 0.01;">Don't Have An Account?<a class="ml-2" href="{% url 'register' %}">Sign Up</a></p>
+            </small>
+    </div>
+{% endblock content %}
+

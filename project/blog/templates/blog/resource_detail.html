@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    {% if object.author.profile.image %}
+      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    {% endif %}
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-resources' object.author.username %}">{{ object.author }}</a>
+        {% if object.date_uploaded %}
+          <small class="text-muted">{{ object.date_uploaded|date:"F d, Y H:i:s" }}</small>
+        {% endif %}
+        {% if object.author == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'resource-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'resource-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      {% if object.description %}
+        <p class="article-content">{{ object.description }}</p>
+      {% endif %}
+      {% if object.subject %}
+        <p class="resource-class"><strong>Subject:</strong> {{ object.subject }}</p>
+      {% else %}
+        <p class="resource-class"><strong>Subject:</strong> Not specified</p>
+      {% endif %}
+      <div class="file-container">
+        {% if object.file %}
+          <a href="{{ object.file.url }}" target="_blank" class="btn btn-outline-info">View Resource</a>
+          <a href="{% url 'download_file' object.id %}" class="btn btn-outline-success">Download Resource</a>
+        {% else %}
+          <p>No file uploaded.</p>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+{% endblock content %}

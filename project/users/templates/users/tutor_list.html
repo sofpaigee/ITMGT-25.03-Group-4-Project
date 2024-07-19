@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<title>Tutor List</title>
+<header class = "text-center">
+    <h1>Tutor List</h1>
+</header>
+
+<div class = "container">
+    <div class = "row justify-content-center mb-4">
+        <div class = "col-md-8">
+            <form method = "GET" class = "form-inline justify-content-center">
+                <input type = "text" name = "q" class="form-control mr-sm-2 mb-2 mb-sm-0" placeholder = "Search by tutor name" value = "{{ request.GET.q }}">
+                <select name = "subject" class="form-control mr-sm-2 mb-2 mb-sm-0">
+                    <option value = "">Any Subject</option>
+                    {% for subject_code, subject_name in subjects %}
+                        <option value="{{ subject_code }}" {% if subject_code == request.GET.subject %}selected{% endif %}>{{ subject_name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-outline-info">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-start">
+        {% if tutors %}
+            {% for tutor in tutors %}
+            <div class = "col-md-4 mb-4">
+                <div class = "card">
+                    <div class = "card-body">
+                        <h5 class = "card-title">Tutor {{ tutor.username }}</h5>
+                        <h6 class = "card-subtitle mb-2 text-muted">Name: {{ tutor.first_name }} {{ tutor.last_name }}</h6>
+                        <p class = "card-text">Email: {{ tutor.email }}</p>
+                        <p class = "card-text"><strong>Subject Expertise:</strong></p>
+                        <ul class = "list-unstyled">
+                            {% for group in tutor.groups.all %}
+                                {% if group.name != 'tutor' %}
+                                    <li>- {{ group.name }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <p class = "col">No tutors found.</p>
+            {% endfor %}
+        {% else %}
+            <p class = "col">No tutors found.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
